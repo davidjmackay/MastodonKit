@@ -57,6 +57,10 @@ public class Status: Codable, Hashable {
     public let pinned: Bool?
     /// Preview card for links included within status content.
     public let card: Card?
+    // Plain-text source of a status. Returned instead of content when status is deleted, 
+    // so the user may redraft from the source text without the client having to reverse-engineer 
+    // the original text from the HTML content.
+    public let text: String?
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -83,6 +87,7 @@ public class Status: Codable, Hashable {
         case reblog
         case pinned
         case card
+        case text
     }
 
     public static func == (lhs: Status, rhs: Status) -> Bool {
